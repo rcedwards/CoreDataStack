@@ -5,16 +5,12 @@ opt_out_usage
 # Project specific variables
 #######################################################################
 
-PROJECT_FILE = "CoreDataStack.xcodeproj"
+PROJECT_FILE = "CoreDataStack.xcodeproj".freeze
 
-TVOS_SCHEME = "CoreDataStackTV"
-MACOS_SCHEME = "CoreDataStackOSX"
-IOS_SCHEME = "CoreDataStack"
+TVOS_SCHEME = "CoreDataStackTV".freeze
+MACOS_SCHEME = "CoreDataStackOSX".freeze
+IOS_SCHEME = "CoreDataStack".freeze
 
-# We always want to run on the latest version of iOS installed 
-# so we're grabbing the highest device by name i.e. iPhone 6s > iPhone 4
-SORTED_BY_VERSION = FastlaneCore::Simulator.all.sort { |x, y| x.os_version <=> y.os_version}
-LATEST_IPHONE_DEVICE = SORTED_BY_VERSION.map { |d| d.name }.select { |s| s[/(iPhone \d.*)/] }.sort.last
 
 #######################################################################
 # Lifecycle Hooks
@@ -36,15 +32,11 @@ end
 
 desc "Runs all the tests"
 lane :test do
-    # iOS
-    puts("Building on device: #{LATEST_IPHONE_DEVICE}")
-    scan(scheme: IOS_SCHEME, device: LATEST_IPHONE_DEVICE)
+    # tvOS and iOS
+    [TVOS_SCHEME, IOS_SCHEME].each { |scheme|
+        scan(scheme: scheme)
+    }
 
     # macOS
-    scan(scheme: MACOS_SCHEME,
-        destination: "platform=macOS,arch=x86_64")
-
-    # tvOS
-    scan(scheme: TVOS_SCHEME,
-        destination: "platform=tvOS Simulator,name=Apple TV 1080p")
+    scan(scheme: MACOS_SCHEME, destination: "platform=macOS,arch=x86_64")
 end

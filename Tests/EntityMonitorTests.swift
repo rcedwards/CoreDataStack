@@ -119,7 +119,7 @@ class EntityMonitorTests: XCTestCase {
         // Modify an existing
         let existing = try! Author.findFirstInContext(moc)!
         existing.setValue("Robert", forKey: "firstName")
-        moc.saveContext()
+        try! moc.saveContextAndWait()
 
         // Delete an item
         moc.delete(entity)
