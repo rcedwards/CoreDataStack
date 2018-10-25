@@ -17,8 +17,8 @@ install:
   - bundle install --deployment --jobs 4
 
 script:
-  - ./Resources/scripts/validate_carthage.sh
-  - ./Resources/scripts/validate_cocoapods.sh
+  # - ./Resources/scripts/validate_carthage.sh
+  # - ./Resources/scripts/validate_cocoapods.sh
   - bundle exec fastlane test
 
 after_success:
