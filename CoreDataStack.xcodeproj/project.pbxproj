@@ -308,7 +308,7 @@
 				E4C9BC301AEA848600A6BD1B /* Supporting Files */,
 			);
 			name = Library;
-			path = CoreDataStack;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		E4C9BC301AEA848600A6BD1B /* Supporting Files */ = {
@@ -327,8 +327,7 @@
 				E43A3C621BFCD0860019D6B4 /* Shared Test Utils */,
 				E4C9BC3D1AEA848600A6BD1B /* Supporting Files */,
 			);
-			name = Tests;
-			path = CoreDataStackTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		E4C9BC3D1AEA848600A6BD1B /* Supporting Files */ = {
